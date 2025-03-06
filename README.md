@@ -31,7 +31,7 @@ This tool is intended *only for ethical security research, authorized penetratio
 
 ### *🔨 Installation*
 ```sh
-git clone https://github.com/khusi-docker/bluesheep.git
+git clone https://github.com/Khusi-docker/BLUE_SHEEP.git
 cd bluesheep
-chmod +x install.sh
-./install.sh 
+chmod +x bluesheep.sh
+./bluesheep.sh 
