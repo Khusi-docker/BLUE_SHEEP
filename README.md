@@ -12,4 +12,26 @@ This tool is intended *only for ethical security research, authorized penetratio
 ## *🔹 Features*  
 - ✔ *Automated Execution* – Detects vulnerabilities and exploits them in *minutes*.  
 - ✔ *Permanent System Shutdown* – Ensures the target system cannot boot without a fresh OS installation.  
-- ✔ *Custom Malware (Rainbo
+- ✔ *Custom Malware (Rainbow)* – Developed from scratch for *seamless* execution.  
+- ✔ *Cross-Platform* – Works on multiple OS types, depending on their security flaws.  
+- ✔ *Stealth Mode* – Operates silently to avoid detection (where applicable).  
+
+---
+
+## *🔧 How It Works*  
+1. *Scan* – Identifies vulnerable systems remotely.  
+2. *Deploy* – Injects *Rainbow* malware into the target.  
+3. *Execute* – Triggers a critical system-level exploit to render the OS inoperable.  
+4. *Persist* – Ensures that the system cannot recover without a full OS reinstall.  
+
+---
+
+## *⚙ Installation & Usage*  
+> *Note:* Ensure you have legal permission before running this tool.  
+
+### *🔨 Installation*
+```sh
+git clone https://github.com/khusi-docker/bluesheep.git
+cd bluesheep
+chmod +x install.sh
+./install.sh 
